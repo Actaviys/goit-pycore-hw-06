@@ -1,6 +1,4 @@
 from collections import UserDict
-from collections.abc import Iterable
-from typing import Any
 
 
 class AddressBook(UserDict): #Адресна книга
@@ -36,10 +34,8 @@ class Field: #Базовий клас
         # print(self.res)
         
         
-    def __dir__(self) -> Iterable[str]:
-        
-        
-        return dict(self.res)
+    def __str__(self):
+        return str(self.res)
         
         
     
@@ -52,7 +48,7 @@ book = AddressBook()#Створюю адресну книгу
 
 dima = Field("Dima", 2343244)
 print(dima)
-# book.add_record(dima)
+book.add_record(dima)
 
 
 # dima_r = {"Dima": [9999]}
