@@ -98,7 +98,7 @@ dima.add_phone(111111111)
 
 my_dict = {}
 my_dict[str(dima)] = str(dima)
-print(f"\nDict-Record (Dima) ->{my_dict}")
+print(f"\nDict-Record (Dima) ->{my_dict}") #<- Тут)
 
 
 
