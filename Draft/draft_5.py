@@ -21,8 +21,8 @@ from collections import UserDict
 class AddressBook(UserDict): #Адресна книга
     
     def add_record(self, record): #Метод add_record, який додає запис до self.data.
-        self.data[record] = record #Записую в self.data
-        
+        # self.data[record] = record #Записую в self.data
+        self.data[str(record)] = str(record) #Якщо так то буде як в Dict-Record, в коді знизу
     
     def find(self, fid): #Знаходить запис за ім'ям
         self.fid = fid #
@@ -47,6 +47,8 @@ class Field: #Базовий клас
     def __init__(self, names, phones=None):
         self.names = names
         self.phones = phones
+        self.dict_fild = {}
+        self.dict_fild[self.names] = self.phones
             
             
 class Name(Field):
@@ -71,13 +73,12 @@ class Phone(Field): #Перевірка на пра
 
 
 class Record:
-    result = {}
-    
     def __init__(self, nam):
         self.nam = Name(nam)
         self.phon_list = []
+        self.result = {}
         self.result[str(self.nam)] = self.phon_list
-        # self.res = Field.result
+        
         
     def add_phone(self, phon=None): #Метод для додавання телефону
         self.phon = Phone(phon)
@@ -91,19 +92,20 @@ class Record:
 book = AddressBook()#Створюю адресну книгу
 
 dima = Record("Dima")
-# lisa = Record("Lisa")
+lisa = Record("Lisa")
 dima.add_phone(233444322)
 dima.add_phone(111111111)
 
-# my_dict = {}
-# my_dict[dima] = dima
-# print(my_dict)
+my_dict = {}
+my_dict[str(dima)] = str(dima)
+print(f"\nDict-Record (Dima) ->{my_dict}")
 
-# book.add_record(dima)
+
+
+print(f"Record 1 ->{dima}")
+print(f"Record 2 ->{lisa}")
+
+
 # book.add_record(lisa)
-
-print(f"Record-> {dima}")
-# print(f"Record-> {lisa}")
-
-book.add_record(dima)
-print(f"AddressBook-> {book}")
+book.add_record(dima) #str(dima)<-З str в AddressBook буде як в Dict-Record
+print(f"AddressBook-> {book}\n")
