@@ -22,7 +22,7 @@ class Field(): #Базовий клас
         self.fd_Phone = fd_Phone
 
 
-class Name(Field): #Клас для імені
+class Name(Field): #Клас для імені 
     def __init__(self, valName) -> None:
         self.valName = valName        
 
