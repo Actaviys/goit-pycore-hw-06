@@ -46,6 +46,12 @@ class Record: #Клас для зберігання інформації про 
         self.num_phone = Phone(num_phone).phone_validation() #Зберігаю обєкт телефону
         self.phones.append(self.num_phone) #Додаю до списку номер
         
+    def edit_phone(self, sPhone, newPhone): #Метод для заміни номера телефону
+        for ph in self.phones: # Пробігаюсь по циклу
+            if ph == sPhone: #Шукаю співпадіння
+                self.phones.pop() #Видаляю номер який знайшов
+                self.phones.append(newPhone) #Добаляю новий номер        
+        
     def dict_record(self): #Метод для створення словника
         self.dt_r = {self.name.valName: self.phones} #Додаю до словника
         return self.dt_r #Вертаю словник
@@ -62,9 +68,12 @@ vika_record = Record("Vika") #Екземпляр класу Record
 vika_record.add_phone("+380555596438") #Додаю номер до контакту
 vika_record.add_phone("+380123456789") #Додаю номер до контакту
 
+vika_record.edit_phone("+380123456789", "+380222333344") #Замінюю номер телефону
+
 book.add_record(dima_record.dict_record()) #Додаю контакт до словника
 book.add_record(vika_record.dict_record()) #Додаю контакт до словника
-print(book)
+print(book, "\n") #Виводжу весь словник
+
 
 for name, record in book.data.items(): #Виведення всіх записів з основної книги
         print(name, record)
